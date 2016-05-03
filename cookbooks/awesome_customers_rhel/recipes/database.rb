@@ -4,6 +4,10 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
+package 'telnet' do
+  action :install
+end
+
 #Configure the mysql client
 mysql_client 'default' do
   action :create
@@ -63,6 +67,6 @@ end
 
 # Seed the database with a table and test data.
 execute "initialize #{node['awesome_customers_rhel']['database']['dbname']} database" do
-  command "mysql -h #{node['awesome_customers_rhel']['database']['host']} -u #{node['awesome_customers_rhel']['database']['admin_username']} -p#{node['awesome_customers_rhel']['database']['admin_password']} -D #{node['awesome_customers_rhel']['database']['dbname']} < /tmp/kitchen/cache/create-tables.sql"
+  command "mysql -h #{node['awesome_customers_rhel']['database']['host']} -u #{node['awesome_customers_rhel']['database']['admin_username']} -p#{node['awesome_customers_rhel']['database']['admin_password']} -D #{node['awesome_customers_rhel']['database']['dbname']} < #{create_tables_script_path}"
   not_if  "mysql -h #{node['awesome_customers_rhel']['database']['host']} -u #{node['awesome_customers_rhel']['database']['admin_username']} -p#{node['awesome_customers_rhel']['database']['admin_password']} -D #{node['awesome_customers_rhel']['database']['dbname']} -e 'describe customers;'"
 end
