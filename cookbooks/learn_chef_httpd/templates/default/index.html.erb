@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h1>More updates to hello world from <%= node['fqdn'] %>
+      <pre>
+Here is the Node Platform <%= node['platform'] %>
+Here is the Node Platform Version <%= node['platform_version'] %>
+Here is the Node IP Address <%= node['ipaddress'] %>
+Here is the Node Hostname <%= node['hostname'] %>
+Here are the Node Recipes <%= node['recipes'] %>
+Here are the Node Roles <%= node['roles'] %>
+Here is the time Ohai was last run <%= node['ohai_time'] %>
+Here is AMT of RAM on node <%= node['memory']['total'] %>
+Here are the Num of CPUS on the node <%= node['cpu']['total'] %>
+      </pre>
+    </h1>
+  </body>
+</html>
